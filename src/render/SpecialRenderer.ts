@@ -828,6 +828,211 @@ export namespace SpecialRenderers {
 		}
 	}
 
+	export function copperGolemStatueRenderer(texture: Identifier) {
+        return (atlas: TextureAtlasProvider, pose: string) => {
+            const body = new BlockModel(undefined, {
+                0: texture.withPrefix('entity/copper_golem/').toString(),
+            }, [
+                { // body
+                    from: [4, 5, 5],
+                    to: [12, 11, 11],
+                    faces: {
+                        north: { uv: [5, 5.25, 7, 6.75], texture: '#0' },
+                        east: { uv: [3.5, 5.25, 5, 6.75], texture: '#0' },
+                        south: { uv: [1.5, 5.25, 3.5, 6.75], texture: '#0' },
+                        west: { uv: [0, 5.25, 1.5, 6.75], texture: '#0' },
+                        up: { uv: [1.5, 3.75, 3.5, 5.25], texture: '#0' },
+                        down: { uv: [3.5, 3.75, 5.5, 5.25], texture: '#0' },
+                    },
+                },
+            ]).getMesh(atlas, Cull.none());
+
+            const head = new BlockModel(undefined, {
+                0: texture.withPrefix('entity/copper_golem/').toString(),
+            }, [
+                { // head
+                    from: [4, 11, 3],
+                    to: [12, 16, 13],
+                    faces: {
+                        north: { uv: [2.5, 2.5, 4.5, 3.75], texture: '#0' },
+                        east: { uv: [0, 2.5, 2.5, 3.75], texture: '#0' },
+                        south: { uv: [7, 2.5, 9, 3.75], texture: '#0' },
+                        west: { uv: [4.5, 2.5, 6.5, 3.75], texture: '#0' },
+                        up: { uv: [2.5, 0, 4.5, 2.5], texture: '#0' },
+                        down: { uv: [4.5, 0, 6.5, 2.5], texture: '#0' },
+                    },
+                },
+                { // nose
+                    from: [7, 10, 2],
+                    to: [9, 13, 4],
+                    faces: {
+                        north: { uv: [14.5, 0.5, 15, 1.25], texture: '#0' },
+                        east: { uv: [14, 0.5, 14.5, 1.25], texture: '#0' },
+                        south: { uv: [15.5, 0.5, 16, 1.25], texture: '#0' },
+                        west: { uv: [15, 0.5, 15.5, 1.25], texture: '#0' },
+                        up: { uv: [14.5, 0, 15, 0.5], texture: '#0' },
+                        down: { uv: [15, 0, 15.5, 0.5], texture: '#0' },
+                    },
+                },
+                { //antenna post
+                    from: [7, 16, 7],
+                    to: [9, 20, 9],
+                    faces: {
+                        north: { uv: [9.75, 2.5, 10.25, 3.5], texture: '#0' },
+                        east: { uv: [9.25, 2.5, 9.75, 3.5], texture: '#0' },
+                        south: { uv: [10.75, 2.5, 11.25, 3.5], texture: '#0' },
+                        west: { uv: [10.25, 2.5, 10.75, 3.5], texture: '#0' },
+                        up: { uv: [9.75, 2, 10.25, 2.5], texture: '#0' },
+                        down: { uv: [10.25, 2, 10.75, 2.5], texture: '#0' },
+                    },
+                },
+                { // antenna cube
+                    from: [6, 20, 6],
+                    to: [10, 24, 10],
+                    faces: {
+                        north: { uv: [10.25, 1, 11.25, 2.0], texture: '#0' },
+                        east: { uv: [9.25, 1, 10.25, 2.0], texture: '#0' },
+                        south: { uv: [12.25, 1, 13.25, 2.0], texture: '#0' },
+                        west: { uv: [11.25, 1, 12.25, 2.0], texture: '#0' },
+                        up: { uv: [10.5, 0, 11.25, 1], texture: '#0' },
+                        down: { uv: [11.5, 0, 12.25, 1], texture: '#0' },
+                    },
+                },
+            ]).getMesh(atlas, Cull.none());
+
+            const rightArm = new BlockModel(undefined, {
+                0: texture.withPrefix('entity/copper_golem/').toString(),
+            }, [
+                { // right arm
+                    from: [12, 2, 6],
+                    to: [15, 12, 10],
+                    faces: {
+                        east: { uv: [9, 5, 10, 7.5], texture: '#0' },
+                        north: { uv: [10, 5, 10.75, 7.5], texture: '#0' },
+                        west: { uv: [10.75, 5, 11.75, 7.5], texture: '#0' },
+                        south: { uv: [11.75, 5, 12.5, 7.5], texture: '#0' },
+                        up: { uv: [10, 4, 10.75, 5], rotation: 180, texture: '#0' },
+                        down: { uv: [10.75, 4, 11.5, 5], rotation: 180, texture: '#0' },
+                    },
+                },
+            ]).getMesh(atlas, Cull.none());
+
+            const leftArm = new BlockModel(undefined, {
+                0: texture.withPrefix('entity/copper_golem/').toString(),
+            }, [
+                { // left arm
+                    from: [1, 2, 6],
+                    to: [4, 12, 10],
+                    faces: {
+                        east: { uv: [12.5, 5, 13.5, 7.5], texture: '#0' },
+                        north: { uv: [13.5, 5, 14.25, 7.5], texture: '#0' },
+                        west: { uv: [14.25, 5, 15.25, 7.5], texture: '#0' },
+                        south: { uv: [15, 5, 16, 7.5], texture: '#0' },
+                        up: { uv: [13.5, 4, 14.25, 5], rotation: 180, texture: '#0' },
+                        down: { uv: [14.25, 4, 15, 5], rotation: 180, texture: '#0' },
+                    },
+                },
+            ]).getMesh(atlas, Cull.none());
+
+            const rightLeg = new BlockModel(undefined, {
+                0: texture.withPrefix('entity/copper_golem/').toString(),
+            }, [
+                { // right leg
+                    from: [8, 0, 6],
+                    to: [12, 5, 10],
+                    faces: {
+                        north: { uv: [5, 7.75, 6, 9.0], texture: '#0' },
+                        east: { uv: [4, 7.75, 5, 9.0], texture: '#0' },
+                        south: { uv: [7, 7.75, 8, 9.0], texture: '#0' },
+                        west: { uv: [6, 7.75, 7, 9.0], texture: '#0' },
+                        up: { uv: [5, 6.75, 6, 7.75], texture: '#0' },
+                        down: { uv: [6, 6.75, 7, 7.75], texture: '#0' },
+                    },
+
+                },
+            ]).getMesh(atlas, Cull.none());
+
+            const leftLeg = new BlockModel(undefined, {
+                0: texture.withPrefix('entity/copper_golem/').toString(),
+            }, [
+                { // left leg
+                    from: [4, 0, 6],
+                    to: [8, 5, 10],
+                    faces: {
+                        north: { uv: [1, 7.75, 2, 9.0], texture: '#0' },
+                        east: { uv: [0, 7.75, 1, 9.0], texture: '#0' },
+                        south: { uv: [3, 7.75, 4, 9.0], texture: '#0' },
+                        west: { uv: [2, 7.75, 3, 9.0], texture: '#0' },
+                        up: { uv: [1, 6.75, 2, 7.75], texture: '#0' },
+                        down: { uv: [2, 6.75, 3, 7.75], texture: '#0' },
+                    },
+                },
+            ]).getMesh(atlas, Cull.none());
+
+            let mesh = new Mesh()
+
+            switch (pose) {
+				case 'sitting':
+                    let sittingMesh = new Mesh()
+
+                    // Body
+                    let bodyTransformSitting = mat4.create()
+                    mat4.translate(bodyTransformSitting, bodyTransformSitting, [-0, -5, 0])
+                    sittingMesh.merge(body.transform(bodyTransformSitting))
+
+                    // Head
+                    let headTransformSitting = mat4.create()
+                    mat4.translate(headTransformSitting, headTransformSitting, [0, -4, 0])
+                    sittingMesh.merge(head.transform(headTransformSitting))
+
+                    // Arms
+                    let ArmTransformSitting = mat4.create()
+
+                    mat4.translate(ArmTransformSitting, ArmTransformSitting, [2.5, 7, 8])
+                    mat4.rotateX(ArmTransformSitting, ArmTransformSitting, Math.PI / 4)
+                    mat4.translate(ArmTransformSitting, ArmTransformSitting, [-2.5, -7, -8])
+                    sittingMesh.merge(rightArm.transform(ArmTransformSitting))
+
+                    sittingMesh.merge(leftArm.transform(ArmTransformSitting))
+
+                    // Legs
+                    let legsTransformSitting = mat4.create()
+                    mat4.translate(legsTransformSitting, legsTransformSitting, [2.5, 2.5, 2])
+                    mat4.rotateX(legsTransformSitting, legsTransformSitting, Math.PI / 2)
+                    mat4.translate(legsTransformSitting, legsTransformSitting, [-2.5, -1, -7.5])
+
+                    sittingMesh.merge(rightLeg.transform(legsTransformSitting))
+                    sittingMesh.merge(leftLeg.transform(legsTransformSitting))
+
+                    mesh.merge(sittingMesh)
+                    break;
+                case 'running':
+                    let runningMesh = new Mesh()
+
+                    mesh.merge(runningMesh)
+                    break;
+                case 'star':
+                    let starMesh = new Mesh()
+
+                    mesh.merge(starMesh)
+                    break;
+                default:
+                    // Default to standing pose
+                    let defaultMesh = new Mesh()
+                    defaultMesh.merge(body)
+                    defaultMesh.merge(head)
+                    defaultMesh.merge(rightArm)
+                    defaultMesh.merge(leftArm)
+                    defaultMesh.merge(rightLeg)
+                    defaultMesh.merge(leftLeg)
+                    mesh.merge(defaultMesh)
+                    break;
+            }
+
+            return mesh;
+        }
+    }
+
 	function getStr(block: BlockState, key: string, fallback = '') {
 		return block.getProperty(key) ?? fallback
 	}
@@ -905,6 +1110,17 @@ export namespace SpecialRenderers {
 			[`minecraft:${color}_wall_banner`, SpecialRenderers.wallBannerRenderer(color)]
 		)
 	)
+
+	const CopperGolemStatueRenderers = new Map(Object.entries({
+        'minecraft:copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('copper_golem')),
+        'minecraft:exposed_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('exposed_copper_golem')),
+        'minecraft:weathered_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('weathered_copper_golem')),
+        'minecraft:oxidized_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('oxidized_copper_golem')),
+        'minecraft:waxed_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('copper_golem')),
+        'minecraft:waxed_exposed_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('exposed_copper_golem')),
+        'minecraft:waxed_weathered_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('weathered_copper_golem')),
+        'minecraft:waxed_oxidized_copper_golem_statue': SpecialRenderers.copperGolemStatueRenderer(Identifier.create('oxidized_copper_golem')),
+    }))
 
 	export function getBlockMesh(block: BlockState, nbt: NbtCompound | undefined, atlas: TextureAtlasProvider, cull: Cull): Mesh {
 		const mesh = new Mesh()
@@ -1029,7 +1245,17 @@ export namespace SpecialRenderers {
 			mat4.translate(t, t, [-8, -23.2, -8])
 			mesh.merge(wallBannerRenderer(atlas, nbt?.getList('patterns', NbtType.Compound)).transform(t))
 		}
-
+		const copperGolemRenderer = CopperGolemStatueRenderers.get(block.getName().toString())
+		if (copperGolemRenderer !== undefined) {
+            const facing = getStr(block, 'facing', 'south')
+            const pose = getStr(block, 'copper_golem_pose', 'standing')
+            const t = mat4.create()
+            mat4.translate(t, t, [8, 8, 8])
+            mat4.rotateY(t, t, facing === 'west' ? Math.PI / 2 : facing === 'south' ? Math.PI : facing === 'east' ? Math.PI * 3 / 2 : 0)
+            mat4.translate(t, t, [-8, -8, -8])
+            mesh.merge(copperGolemRenderer(atlas, pose).transform(t))
+        }
+		
 		if (!block.is('water') && !block.is('lava') && block.isWaterlogged()) {
 			mesh.merge(liquidRenderer('water', 0, atlas, cull, 0))
 		}

@@ -62,32 +62,29 @@ class InteractiveCanvas {
 	}
 }
 
-const MCMETA = 'https://raw.githubusercontent.com/misode/mcmeta/'
-
 Promise.all([
-	fetch(`${MCMETA}registries/item/data.min.json`).then(r => r.json()),
-	fetch(`${MCMETA}summary/assets/block_definition/data.min.json`).then(r => r.json()),
-	fetch(`${MCMETA}summary/assets/model/data.min.json`).then(r => r.json()),
-	fetch(`${MCMETA}summary/assets/item_definition/data.min.json`).then(r => r.json()),
-	fetch(`${MCMETA}summary/item_components/data.min.json`).then(r => r.json()),
-	fetch(`${MCMETA}atlas/all/data.min.json`).then(r => r.json()),
-	new Promise<HTMLImageElement>(res => {
-		const image = new Image()
-		image.onload = () => res(image)
-		image.crossOrigin = 'Anonymous'
-		image.src = `${MCMETA}atlas/all/atlas.png`
-	}),
-]).then(([items, blockstates, models, item_models, item_components, uvMap, atlas]) => {
+    fetch('./blockstates.json').then(r => r.json()),
+    fetch('./models.json').then(r => r.json()),
+    fetch('./item_models.json').then(r => r.json()),
+    fetch('./item_components.json').then(r => r.json()),
+    fetch('./uv_map.json').then(r => r.json()),
+    new Promise<HTMLImageElement>(res => {
+        const image = new Image()
+        image.onload = () => res(image)
+        image.crossOrigin = 'Anonymous'
+        image.src = './atlas.png'
+    }),
+]).then(([blockstates, models, item_models, item_components, uvMap, atlas]) => {
 	
 	// === Prepare assets for item and structure rendering ===
 
-	const itemList = document.createElement('datalist')
-	itemList.id = 'item-list'
-	items.forEach(item => {
-		const option = document.createElement('option')
-		option.textContent = item
-		itemList.append(option)
-	})
+    const itemList = document.createElement('datalist')
+    itemList.id = 'item-list'
+    Object.keys(item_components).forEach(item => {
+        const option = document.createElement('option')
+        option.textContent = item
+        itemList.append(option)
+    })
 	document.getElementById('item-input')?.after(itemList)
 
 	const blockDefinitions: Record<string, BlockDefinition> = {}
@@ -177,12 +174,8 @@ Promise.all([
 
 	const structure = new Structure([3, 2, 2])
 	const size = structure.getSize()
-	structure.addBlock([1, 0, 0], 'minecraft:grass_block', { snowy: 'false' })
-	structure.addBlock([2, 0, 0], 'minecraft:stone')
-	structure.addBlock([1, 1, 0], 'minecraft:skeleton_skull', { rotation: '15' })
-	structure.addBlock([2, 1, 0], 'minecraft:acacia_fence', { waterlogged: 'true', north: 'true' })
-	structure.addBlock([0, 0, 0], 'minecraft:wall_torch', { facing: 'west' })
-	structure.addBlock([1, 0, 1], 'minecraft:oak_trapdoor', { facing: 'south', half: 'bottom', open: 'true', powered: 'false', waterlogged: 'false' })
+	structure.addBlock([1, 0, 0], 'minecraft:target')
+	structure.addBlock([1, 1, 0], 'minecraft:exposed_copper_golem_statue', { 'copper_golem_pose': 'sitting' })
 
 	const structureCanvas = document.getElementById('structure-display') as HTMLCanvasElement
 	const structureGl = structureCanvas.getContext('webgl')!
