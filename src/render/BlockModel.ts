@@ -77,7 +77,7 @@ export class BlockModel {
 
 	constructor(
 		private parent: Identifier | undefined,
-		private textures: { [key: string]: string } | undefined,
+		private textures: { [key: string]: string | { sprite: string } } | undefined,
 		private elements: BlockModelElement[] | undefined,
 		private display?: BlockModelDisplay | undefined,
 		private guiLight?: BlockModelGuiLight | undefined,
@@ -188,10 +188,12 @@ export class BlockModel {
 	}
 
 	private getTexture(textureRef: string) {
+		const resolve = (v: string | { sprite: string } | undefined) =>
+			v === undefined ? '' : typeof v === 'object' ? v.sprite : v
 		textureRef = textureRef.startsWith('#') ? textureRef.slice(1) : textureRef
-		textureRef = this.textures?.[textureRef] ?? ''
+		textureRef = resolve(this.textures?.[textureRef])
 		while (textureRef.startsWith('#')) {
-			textureRef = this.textures?.[textureRef.slice(1)] ?? ''
+			textureRef = resolve(this.textures?.[textureRef.slice(1)])
 		}
 		return Identifier.parse(textureRef)
 	}
